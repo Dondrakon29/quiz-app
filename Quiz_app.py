@@ -1,0 +1,100 @@
+questions = [
+    {
+        "question": "What is Python?",
+        "options": ["1. Snake", "2. Programming language", "3. Car"],
+        "answer": "2"
+    },
+    {
+        "question": "What does JSON store?",
+        "options": ["1. Data", "2. Music", "3. Images only"],
+        "answer": "1"
+    },
+    {
+        "question": "Which keyword creates a function in Python?",
+        "options": ["1. def", "2. func", "3. function"],
+        "answer": "1"
+    }
+]
+
+def get_user_answer(question):
+    options_count = len(question["options"])
+
+    while True:
+        user_answer = input("Your answer: ").strip()
+
+        try:
+            number = int(user_answer)
+        except ValueError:
+            print("Answer must be a number")
+            continue
+
+        if number < 1 or number > options_count:
+            print(f"Choose a number from 1 to {options_count}")
+            continue
+
+        return user_answer    
+
+
+def show_question(index, question, total_questions):
+    print(f"Question {index}/{total_questions}")
+    print(question["question"])
+
+    for option in question["options"]:
+        print(option)
+
+
+def check_answer(question, user_answer):
+    if user_answer == question["answer"]:
+        print("Correct!")
+        return True
+    
+    print("Wrong!")
+
+    correct_index = int(question["answer"]) - 1
+    correct_option = question["options"][correct_index]
+
+    print("Correct answer:", correct_option)
+
+    return False
+
+def get_result_message(percent):
+    if percent == 100:
+        return "Excellent!"
+    elif percent >= 60:
+        return "Good job!"
+    else:
+        return "Keep practicing!"
+
+def run_quiz(questions):
+    score = 0
+    total_questions = len(questions)
+
+    print("Welcome to Quiz App!")
+    print(f"You have {total_questions} questions.")
+    print("Choose the correct answer number.")
+    print()
+
+    for index, question in enumerate(questions, start=1):
+        show_question(index, question, total_questions)
+        
+        
+        user_answer = get_user_answer(question)
+
+        if check_answer(question, user_answer):
+            score += 1
+
+        print ()
+
+    percent = round(score / total_questions * 100)
+    result_message = get_result_message(percent)    
+
+    print("Quiz finished")
+    print(f"Your score: {score}/{total_questions}")
+    print(f"Result: {percent}%")
+    print(result_message)
+
+if __name__ == "__main__":
+    run_quiz(questions)                    
+
+
+    
