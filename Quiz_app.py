@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 def load_quesions():
     try:
@@ -38,10 +39,13 @@ def save_results(results):
 def save_quiz_result(score, total_questions, percent):
     results = load_results()
 
+    current_date = datetime.now().strftime("%Y-%m-%d %H:%M")
+
     result = {
         "score": score,
         "total": total_questions,
-        "percent": percent 
+        "percent": percent,
+        "date": current_date 
     }
 
     results.append(result)

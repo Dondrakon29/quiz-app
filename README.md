@@ -17,6 +17,7 @@ A simple Python console quiz application.
 - Basic code refactoring with helper functions
 - Save quiz results to JSON file
 - Store history of quiz attempts
+- Save quiz attempt date and time
 
 ## Technologies
 
@@ -81,6 +82,10 @@ README.md
 - saving data to JSON file
 - appending new results to a list
 - storing quiz attempt history
+- datetime
+- datetime.now()
+- strftime()
+- converting date object to string
 - len()
 - round()
 - score counting
