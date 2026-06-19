@@ -15,6 +15,8 @@ A simple Python console quiz application.
 - Handle missing JSON file
 - Handle broken or empty JSON file
 - Basic code refactoring with helper functions
+- Save quiz results to JSON file
+- Store history of quiz attempts
 
 ## Technologies
 
@@ -52,6 +54,7 @@ Questions are stored in `questions.json`:
 ```text
 quiz_app.py
 questions.json
+results.json
 README.md
 ```
 
@@ -75,6 +78,9 @@ README.md
 - loading data from file
 - handling missing files
 - handling broken JSON
+- saving data to JSON file
+- appending new results to a list
+- storing quiz attempt history
 - len()
 - round()
 - score counting

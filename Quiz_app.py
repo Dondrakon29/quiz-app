@@ -16,6 +16,36 @@ def load_quesions():
 
 questions = load_quesions()
 
+def load_results():
+    try:
+        with open("results.json", "r") as file:
+            results = json.load(file)
+
+        return results
+
+    except FileNotFoundError:
+        return []
+
+    except json.JSONDecodeError:
+        return []
+
+
+def save_results(results):
+    with open("results.json", "w") as file:
+        json.dump(results, file, indent=4)
+
+
+def save_quiz_result(score, total_questions, percent):
+    results = load_results()
+
+    result = {
+        "score": score,
+        "total": total_questions,
+        "percent": percent 
+    }
+
+    results.append(result)
+    save_results(results)
 
 def get_user_answer(question):
     options_count = len(question["options"])
@@ -98,6 +128,8 @@ def run_quiz(questions):
     print(f"Your score: {score}/{total_questions}")
     print(f"Result: {percent}%")
     print(result_message)
+
+    save_quiz_result(score, total_questions, percent)
 
 if __name__ == "__main__":
     run_quiz(questions)                    
