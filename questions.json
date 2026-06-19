@@ -1,0 +1,17 @@
+[
+  {
+        "question": "What is Python?",
+        "options": ["1. Snake", "2. Programming language", "3. Car"],
+        "answer": "2"
+    },
+    {
+        "question": "What does JSON store?",
+        "options": ["1. Data", "2. Music", "3. Images only"],
+        "answer": "1"
+    },
+    {
+        "question": "Which keyword creates a function in Python?",
+        "options": ["1. def", "2. func", "3. function"],
+        "answer": "1"
+    }  
+]

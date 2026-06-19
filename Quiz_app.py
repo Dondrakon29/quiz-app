@@ -1,20 +1,21 @@
-questions = [
-    {
-        "question": "What is Python?",
-        "options": ["1. Snake", "2. Programming language", "3. Car"],
-        "answer": "2"
-    },
-    {
-        "question": "What does JSON store?",
-        "options": ["1. Data", "2. Music", "3. Images only"],
-        "answer": "1"
-    },
-    {
-        "question": "Which keyword creates a function in Python?",
-        "options": ["1. def", "2. func", "3. function"],
-        "answer": "1"
-    }
-]
+import json
+
+def load_quesions():
+    try:
+        with open("questions.json", "r") as file:
+            questions = json.load(file)
+
+        return questions
+
+    except FileNotFoundError:
+        return []
+
+    except json.JSONDecodeError:
+        return []    
+
+
+questions = load_quesions()
+
 
 def get_user_answer(question):
     options_count = len(question["options"])
@@ -66,6 +67,11 @@ def get_result_message(percent):
         return "Keep practicing!"
 
 def run_quiz(questions):
+
+    if not questions:
+        print("No questions found")
+        return
+    
     score = 0
     total_questions = len(questions)
 
