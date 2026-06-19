@@ -51,6 +51,20 @@ def save_quiz_result(score, total_questions, percent):
     results.append(result)
     save_results(results)
 
+def show_results():
+    results = load_results()
+
+    if not results:
+        print("No results yet")
+        return
+
+    print("Attempt history")
+
+    for index, result in enumerate(results, start=1):
+        date = result.get("date", "no date")
+
+        print(f'{index}. {result["score"]}/{result["total"]} | {result["percent"]}% | {date}')    
+
 def get_user_answer(question):
     options_count = len(question["options"])
 
@@ -134,6 +148,11 @@ def run_quiz(questions):
     print(result_message)
 
     save_quiz_result(score, total_questions, percent)
+
+    print("Result saved")
+    print()
+
+    show_results()
 
 if __name__ == "__main__":
     run_quiz(questions)                    
