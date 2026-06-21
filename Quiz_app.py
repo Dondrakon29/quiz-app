@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-def load_quesions():
+def load_questions():
     try:
         with open("questions.json", "r") as file:
             questions = json.load(file)
@@ -15,7 +15,7 @@ def load_quesions():
         return []    
 
 
-questions = load_quesions()
+questions = load_questions()
 
 def load_results():
     try:
@@ -51,6 +51,7 @@ def save_quiz_result(score, total_questions, percent):
     results.append(result)
     save_results(results)
 
+
 def show_results():
     results = load_results()
 
@@ -58,7 +59,7 @@ def show_results():
         print("No results yet")
         return
 
-    print("Attempt history")
+    print("Attempt history:")
 
     for index, result in enumerate(results, start=1):
         date = result.get("date", "no date")
@@ -92,6 +93,7 @@ def show_question(index, question, total_questions):
         print(option)
 
 
+
 def check_answer(question, user_answer):
     if user_answer == question["answer"]:
         print("Correct!")
@@ -106,6 +108,7 @@ def check_answer(question, user_answer):
 
     return False
 
+
 def get_result_message(percent):
     if percent == 100:
         return "Excellent!"
@@ -114,8 +117,15 @@ def get_result_message(percent):
     else:
         return "Keep practicing!"
 
-def run_quiz(questions):
 
+def show_menu():
+    print("1 - Start quiz")
+    print("2 - Show results")
+    print("0 - Exit")
+
+
+def run_quiz(questions):
+      
     if not questions:
         print("No questions found")
         return
@@ -137,7 +147,7 @@ def run_quiz(questions):
         if check_answer(question, user_answer):
             score += 1
 
-        print ()
+        print()
 
     percent = round(score / total_questions * 100)
     result_message = get_result_message(percent)    
@@ -154,8 +164,30 @@ def run_quiz(questions):
 
     show_results()
 
+    print()
+    print("Returning to menu...")
+
+
+def run_app():
+    while True:
+        show_menu()
+
+        choice = input("Choose option: ").strip()
+
+        if choice == "1":
+            run_quiz(questions)
+        elif choice == "2":
+            show_results()
+        elif choice == "0":
+            print("Goodbye!")
+            break
+        else:
+            print("Wrong choice")
+
+        print()
+
 if __name__ == "__main__":
-    run_quiz(questions)                    
+    run_app()                                  
 
 
     
